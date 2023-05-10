@@ -1,5 +1,5 @@
-import chat from "./chat.js";
-import chatPrompt from "./template.js";
+import chat from "./components/chat.js";
+import chatPrompt from "./components/template.js";
 import { PromptTemplate } from "langchain/prompts";
 
 // 缓存
@@ -70,7 +70,7 @@ const intelligenceMemoryChain = new LLMChain({ llm: chat, prompt, memory: intell
 
 // 也可以将对话数据存储在VectorDB中，VectorDB是一个高性能的向量检索库，基于类似HNSW的算法来进行快速的相似度搜索
 // HNSW相关的库后面也会用到，比如知识库
-const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
+const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
 // 
 const vectorStoreMemory = new VectorStoreRetrieverMemory({
     // 1是要回溯的文本/对话数量
@@ -86,6 +86,10 @@ await vectorStoreMemory.saveContext(
     { output: "天哪，你一定是个美国人" }
 )
 await vectorStoreMemory.saveContext(
+    { input: "你好,我的名字叫jim" },
+    { output: "是的,你叫jim" }
+)
+await vectorStoreMemory.saveContext(
     { input: "我最喜欢的动物是人" },
     { output: "那太好了" }
 )
@@ -94,9 +98,9 @@ await vectorStoreMemory.saveContext(
     { output: "那你一定很有钱" }
 )
 // 输出一下看看效果
-// console.log(
-//     await vectorStoreMemory.loadMemoryVariables({ prompt: "我是一个什么东西" })
-// )
+console.log(
+    await vectorStoreMemory.loadMemoryVariables({ prompt: "我的性别是什么" })
+)
 // { history: 'input: 我的性别是武装直升机\noutput: ……' }
 
 const vectorPrompt =
@@ -117,17 +121,23 @@ const vectorChain = new LLMChain({ llm: chat, prompt:vectorPrompt, memory:vector
 /**
  * memoryChain: 普通缓存
  * restrictMemoryChain: 限制聊天窗口
- * intelligenceMemory: 智能缓存，根据聊天内容生成摘要
- * vectorPrompt: 使用向量库
+ * intelligenceMemoryChain: 智能缓存，根据聊天内容生成摘要
+ * vectorChain: 使用向量库
  */
 async function memoryChat(inputValue) {
 
     const response = await vectorChain.call({ input: inputValue })
 
     console.log(response)
-    // console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })
+    console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })
 
 }
+
+memoryChat('你还记得我叫什么吗')
+setTimeout(() => {
+    memoryChat('你还记得我的性别吗')
+
+}, 10000);
 
 
 

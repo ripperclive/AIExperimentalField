@@ -1,7 +1,10 @@
 import readline from 'readline'
 import dotenv from 'dotenv'
-import chatGPT from './src/index.js'
-
+import steamChat from './src/streamChat.js'
+import memoryChat from './src/memoryChat.js'
+import ordinaryChat from './src/ordinaryChat.js'
+import googleChat from './src/googleChat.js'
+// import knowledgeBaseChat from './src/knowledgeChat.js'
 dotenv.config()
 
 const rl = readline.createInterface({
@@ -9,11 +12,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 rl.on('line', (input) => {
-    // console.log()
-    // questionAI1(input)
-    // questionAI2(input)
-    // questionAI3(input)
-    chatGPT(input)
+    memoryChat(input)
 }
 );
 

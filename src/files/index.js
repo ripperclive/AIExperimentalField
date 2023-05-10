@@ -7,7 +7,7 @@ import { CharacterTextSplitter } from "langchain/text_splitter";
 import * as fs from "fs";
 
 export const run = async () => {
-    const model = new OpenAI({ openAIApiKey: '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' });
+    const model = new OpenAI({ openAIApiKey: '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' });
     const text = fs.readFileSync("诗词曲.txt", "utf8");
     const textSplitter = new CharacterTextSplitter({
         separator: '  ',
@@ -19,7 +19,7 @@ export const run = async () => {
 
     console.log(docs)
 
-    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
+    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
 
 
     const result = await vectorStore.similaritySearchWithScore("你能介绍一下群鹤咏吗", 1);
