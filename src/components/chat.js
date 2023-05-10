@@ -6,7 +6,7 @@ const chat = new ChatOpenAI({
     openAIApiKey: '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',
     temperature: 0.5,
     // streaming:true,
-    timeout:10000
+//     timeout:10000
 });
 
 

@@ -88,3 +88,20 @@ CharacterTextSplitter: 同样是文本分析工具，也具有chunkSize和chunkO
 vectorStore.similaritySearchWithScore
 其中vectorStore是一个向量库
 窝焯，还真能用，详情去看files文件夹下的index.js
+
+
+
+
+### 写到这里的时候代码丢了，手抖按了全部撤销
+回档之后发现一个问题 memoryChat.js中带向量库的chat宕机了，一问三不知。
+死活找不到问题。
+后来发现四条测试例子只有第一条无法正常返回。
+于是想起了之前改过temperature的参数
+经过测试 在0.1和0.9的情况下AI均无法识别这个例子
+```
+vectorStoreMemory.saveContext(
+    { input: "我的性别是武装直升机" },
+    { output: "天哪，你一定是个美国人" }
+)
+```
+凎

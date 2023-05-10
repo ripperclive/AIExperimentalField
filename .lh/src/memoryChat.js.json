@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1683718307833,
@@ -68,6 +68,14 @@
                 {
                     "date": 1683719685303,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,9 +98,9 @@\n     { output: \"那你一定很有钱\" }\n )\n // 输出一下看看效果\n // console.log(\n-//     await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的名字是什么\" })\n+//     await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的性别是什么\" })\n // )\n // { history: 'input: 我的性别是武装直升机\\noutput: ……' }\n \n const vectorPrompt =\n"
+                },
+                {
+                    "date": 1683719954449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,11 +97,11 @@\n     { input: \"我最喜欢的代步工具是AC-130\" },\n     { output: \"那你一定很有钱\" }\n )\n // 输出一下看看效果\n-// console.log(\n-//     await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的性别是什么\" })\n-// )\n+console.log(\n+    await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的性别是什么\" })\n+)\n // { history: 'input: 我的性别是武装直升机\\noutput: ……' }\n \n const vectorPrompt =\n     PromptTemplate.fromTemplate(`The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.\n@@ -132,13 +132,7 @@\n     console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })\n \n }\n \n-memoryChat('你还记得我叫什么吗')\n-setTimeout(() => {\n-    memoryChat('你还记得我的性别吗')\n \n-}, 10000);\n \n-\n-\n export default memoryChat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683720009051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,11 +97,11 @@\n     { input: \"我最喜欢的代步工具是AC-130\" },\n     { output: \"那你一定很有钱\" }\n )\n // 输出一下看看效果\n-console.log(\n-    await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的性别是什么\" })\n-)\n+// console.log(\n+//     await vectorStoreMemory.loadMemoryVariables({ prompt: \"我的性别是什么\" })\n+// )\n // { history: 'input: 我的性别是武装直升机\\noutput: ……' }\n \n const vectorPrompt =\n     PromptTemplate.fromTemplate(`The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.\n"
                 }
             ],
             "date": 1683718307833,

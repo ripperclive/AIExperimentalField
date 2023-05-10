@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1683718225757,
@@ -16,6 +16,26 @@
                 {
                     "date": 1683719420320,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n     temperature: 0.5,\n     // streaming:true,\n-    // timeout:10000\n+    timeout:10000\n });\n \n \n export default chat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683719902590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n \n // 一个最基本的聊天模型\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n-    temperature: 0.5,\n+    temperature: 1,\n     // streaming:true,\n-    timeout:10000\n-});\n+//     timeout:10000\n+// });\n \n \n export default chat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683725486678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n \n // 一个最基本的聊天模型\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n-    temperature: 1,\n+    temperature: 0.9,\n     // streaming:true,\n //     timeout:10000\n-// });\n+});\n \n \n export default chat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683725617287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n // 一个最基本的聊天模型\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n-    temperature: 0.9,\n+    temperature: 0.1,\n     // streaming:true,\n //     timeout:10000\n });\n \n"
+                },
+                {
+                    "date": 1683725823271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n // 一个最基本的聊天模型\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n-    temperature: 0.1,\n+    temperature: 0.9,\n     // streaming:true,\n //     timeout:10000\n });\n \n"
+                },
+                {
+                    "date": 1683725992951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n // 一个最基本的聊天模型\n const chat = new ChatOpenAI({\n     openAIApiKey: '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',\n-    temperature: 0.9,\n+    temperature: 0.5,\n     // streaming:true,\n //     timeout:10000\n });\n \n"
                 }
             ],
             "date": 1683718225757,

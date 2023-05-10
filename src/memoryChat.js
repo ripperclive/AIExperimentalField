@@ -98,9 +98,9 @@ await vectorStoreMemory.saveContext(
     { output: "那你一定很有钱" }
 )
 // 输出一下看看效果
-console.log(
-    await vectorStoreMemory.loadMemoryVariables({ prompt: "我的性别是什么" })
-)
+// console.log(
+//     await vectorStoreMemory.loadMemoryVariables({ prompt: "我的性别是什么" })
+// )
 // { history: 'input: 我的性别是武装直升机\noutput: ……' }
 
 const vectorPrompt =
@@ -132,12 +132,6 @@ async function memoryChat(inputValue) {
     console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })
 
 }
-
-memoryChat('你还记得我叫什么吗')
-setTimeout(() => {
-    memoryChat('你还记得我的性别吗')
-
-}, 10000);
 
 
 
