@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/files/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1683771638118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1683771638118,
+            "name": "Commit-0",
+            "content": "import { OpenAI } from \"langchain/llms/openai\";\nimport { RetrievalQAChain } from \"langchain/chains\";\nimport { HNSWLib } from \"langchain/vectorstores/hnswlib\";\nimport { OpenAIEmbeddings } from \"langchain/embeddings/openai\";\nimport { RecursiveCharacterTextSplitter } from \"langchain/text_splitter\";\nimport { CharacterTextSplitter } from \"langchain/text_splitter\";\nimport * as fs from \"fs\";\n\nexport const run = async () => {\n    const model = new OpenAI({ openAIApiKey: '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' });\n    const text = fs.readFileSync(\"诗词曲.txt\", \"utf8\");\n    const textSplitter = new CharacterTextSplitter({\n        separator: '  ',\n        chunkSize: 10,\n        chunkOverlap: 2,\n    });\n    const docs = await textSplitter.createDocuments([text]);\n\n\n    console.log(docs)\n\n    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n\n\n    const result = await vectorStore.similaritySearchWithScore(\"你能介绍一下群鹤咏吗\", 1);\n    // console.log(result)\n\n\n    // const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n    // const res = await chain.call({\n    //     query: \"你好，你喜欢群鹤咏这首诗吗？你能介绍一下吗？\",\n    // }\n    // )\n    // console.log({ res },\n    //     // chain,\n    //     // chain.retriever.vectorStore.args,\n    //     // chain.combineDocumentsChain.llmChain.prompt.inputVariables,\n    //     // chain.combineDocumentsChain.llmChain.llm.caller,\n    //     // '-----------------------------------',\n    //     // chain.combineDocumentsChain.llmChain.llm.clinent,\n    //     // chain.combineDocumentsChain.llmChain.llm.clientConfig,\n    // );\n}\n\n\nrun()"
+        }
+    ]
+}

@@ -61,6 +61,11 @@ QuerySqlTool, InfoSqlTool, ListTablesSqlTool, 和QueryCheckerTool- 用于与 SQL
 
 
 ### 文字提取
+hnswlib-node是一个基于hnswlib算法实现的Node.js插件，用于高效的最近邻搜索。hnswlib是一种用于快速最近邻搜索的层次化数据结构，它能够在大规模数据集上快速地搜索最近的邻居
+(↑ OPENAI说的)
+
+RetrievalQAChain是一个可以用于远程服务器检索文档的链，ConversationalRetrievalQA在它的基础上提供了聊天记录。
+
 RecursiveCharacterTextSplitter:是一个文本分割工具，可以把文本按照"\n\n"、"\n"和" "递归地分割成多个文档，以生成更小的文本块。这个工具通常用于将大型文本分割成更小的块，以便进行处理或分析。在Langchain中，它被用于将大型文本数据集分割成更小的文档，以便进行自然语言处理任务。
 具有两个参数:chunkSize控制最终文档的最大大小（以字符数为单位），chunkOverlap指定文档之间应该有多少重叠
 CharacterTextSplitter: 同样是文本分析工具，也具有chunkSize和chunkOverlap,但是有一个额外的参数separator，分割文档时将按照separator传入内容来进行分割。
@@ -88,6 +93,7 @@ CharacterTextSplitter: 同样是文本分析工具，也具有chunkSize和chunkO
 vectorStore.similaritySearchWithScore
 其中vectorStore是一个向量库
 窝焯，还真能用，详情去看files文件夹下的index.js
+一次偶然测试发现即使成功切片了，AI也会一股脑的全部发给GPT，所以在构建向量库的时候用similaritySearchWithScore筛选一下在发送就OK了。有空做。
 
 
 

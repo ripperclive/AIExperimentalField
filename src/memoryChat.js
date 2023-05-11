@@ -70,7 +70,7 @@ const intelligenceMemoryChain = new LLMChain({ llm: chat, prompt, memory: intell
 
 // 也可以将对话数据存储在VectorDB中，VectorDB是一个高性能的向量检索库，基于类似HNSW的算法来进行快速的相似度搜索
 // HNSW相关的库后面也会用到，比如知识库
-const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
+const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
 // 
 const vectorStoreMemory = new VectorStoreRetrieverMemory({
     // 1是要回溯的文本/对话数量

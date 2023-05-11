@@ -1,24 +1,40 @@
 import chat from "./components/chat.js";
 
-import extract from "./components/knowledgeBase.js";
-
+import { OpenAI } from "langchain/llms/openai";
+import { RetrievalQAChain } from "langchain/chains";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { RetrievalQAChain } from "langchain/chains";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { CharacterTextSplitter } from "langchain/text_splitter";
+import * as fs from "fs";
+
+
+// 目前只能读txt，loader加载会报错，后面研究
+const text = fs.readFileSync("src/files/诗词曲.txt", "utf8");
+const textSplitter = new CharacterTextSplitter({
+  separator: '  ',
+  chunkSize: 10,
+  chunkOverlap: 2,
+});
+
+
+const docs = await textSplitter.createDocuments([text]);
+
 
 // 从文档中创建一个矢量存储
-const vectorStore = await HNSWLib.fromDocuments(await extract(), new OpenAIEmbeddings({ openAIApiKey: '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' }));
+const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
 
+// 创建一个支持文档检索的链
 const chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());
-console.log('初始化完毕') 
 
-const knowledgeBaseChat =async(inputValue)=>{
-console.log('输入问题：',inputValue)
-   const res = await chain.call({
-     query: inputValue,
-   });
- 
-   console.log('AI:',res) 
+const knowledgeBaseChat = async (inputValue) => {
+
+  const res = await chain.call({
+    query: inputValue,
+  }
+  )
+  console.log({ res },
+  )
 
 }
 

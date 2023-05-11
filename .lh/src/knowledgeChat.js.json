@@ -1,0 +1,66 @@
+{
+    "sourceFile": "src/knowledgeChat.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1683771066935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1683771091734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,21 +7,28 @@\n import { RecursiveCharacterTextSplitter } from \"langchain/text_splitter\";\n import { CharacterTextSplitter } from \"langchain/text_splitter\";\n import * as fs from \"fs\";\n \n+\n+\n+const text = fs.readFileSync(\"诗词曲.txt\", \"utf8\");\n+const textSplitter = new CharacterTextSplitter({\n+  separator: '  ',\n+  chunkSize: 10,\n+  chunkOverlap: 2,\n+});\n // 从文档中创建一个矢量存储\n-const vectorStore = await HNSWLib.fromDocuments(await extract(), new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n-const chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());\n-console.log('初始化完毕') \n+const docs = await textSplitter.createDocuments([text]);\n \n-const knowledgeBaseChat =async(inputValue)=>{\n-console.log('输入问题：',inputValue)\n-   const res = await chain.call({\n-     query: inputValue,\n-   });\n- \n-   console.log('AI:',res) \n \n+const knowledgeBaseChat = async (inputValue) => {\n+  console.log('输入问题：', inputValue)\n+  const res = await chain.call({\n+    query: inputValue,\n+  });\n+\n+  console.log('AI:', res)\n+\n }\n \n export default knowledgeBaseChat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683771113185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,14 +9,16 @@\n import * as fs from \"fs\";\n \n \n \n-const text = fs.readFileSync(\"诗词曲.txt\", \"utf8\");\n+const text = fs.readFileSync(\"src/files/诗词曲.txt\", \"utf8\");\n const textSplitter = new CharacterTextSplitter({\n   separator: '  ',\n   chunkSize: 10,\n   chunkOverlap: 2,\n });\n+\n+\n // 从文档中创建一个矢量存储\n \n const docs = await textSplitter.createDocuments([text]);\n \n"
+                },
+                {
+                    "date": 1683771119202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,14 +23,14 @@\n const docs = await textSplitter.createDocuments([text]);\n \n \n const knowledgeBaseChat = async (inputValue) => {\n-  console.log('输入问题：', inputValue)\n-  const res = await chain.call({\n-    query: inputValue,\n-  });\n+  // console.log('输入问题：', inputValue)\n+  // const res = await chain.call({\n+  //   query: inputValue,\n+  // });\n \n-  console.log('AI:', res)\n+  // console.log('AI:', res)\n \n }\n \n export default knowledgeBaseChat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683771131815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,13 +17,15 @@\n   chunkOverlap: 2,\n });\n \n \n-// 从文档中创建一个矢量存储\n \n const docs = await textSplitter.createDocuments([text]);\n \n+// 从文档中创建一个矢量存储\n+const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n+\n const knowledgeBaseChat = async (inputValue) => {\n   // console.log('输入问题：', inputValue)\n   // const res = await chain.call({\n   //   query: inputValue,\n"
+                },
+                {
+                    "date": 1683771186814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,12 +20,16 @@\n \n \n const docs = await textSplitter.createDocuments([text]);\n \n+console.log('???',docs)\n+\n+\n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n \n+\n const knowledgeBaseChat = async (inputValue) => {\n   // console.log('输入问题：', inputValue)\n   // const res = await chain.call({\n   //   query: inputValue,\n"
+                },
+                {
+                    "date": 1683772464956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,17 +26,16 @@\n \n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n+    const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n \n-\n const knowledgeBaseChat = async (inputValue) => {\n-  // console.log('输入问题：', inputValue)\n-  // const res = await chain.call({\n-  //   query: inputValue,\n-  // });\n \n-  // console.log('AI:', res)\n+    // const res = await chain.call({\n+    //     query: \"你好，你喜欢群鹤咏这首诗吗？你能介绍一下吗？\",\n+    // }\n+    // )\n \n }\n \n export default knowledgeBaseChat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683772487067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,22 +20,24 @@\n \n \n const docs = await textSplitter.createDocuments([text]);\n \n-console.log('???',docs)\n+console.log('???', docs)\n \n \n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n-    const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n+const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n \n const knowledgeBaseChat = async (inputValue) => {\n \n-    // const res = await chain.call({\n-    //     query: \"你好，你喜欢群鹤咏这首诗吗？你能介绍一下吗？\",\n-    // }\n-    // )\n+  const res = await chain.call({\n+    query: inputValue,\n+  }\n+  )\n+  console.log({ res },\n+  )\n \n }\n \n export default knowledgeBaseChat\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1683772515446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,9 @@\n \n \n const docs = await textSplitter.createDocuments([text]);\n \n-console.log('???', docs)\n \n-\n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n"
+                },
+                {
+                    "date": 1683772530806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n-const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());\n+const chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());\n \n const knowledgeBaseChat = async (inputValue) => {\n \n   const res = await chain.call({\n"
+                },
+                {
+                    "date": 1683773549186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n \n // 从文档中创建一个矢量存储\n const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));\n \n+// 创建一个支持文档检索的链\n const chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());\n \n const knowledgeBaseChat = async (inputValue) => {\n \n"
+                },
+                {
+                    "date": 1683773556844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n   chunkOverlap: 2,\n });\n \n \n-\n const docs = await textSplitter.createDocuments([text]);\n \n \n // 从文档中创建一个矢量存储\n"
+                },
+                {
+                    "date": 1683773586875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n import { CharacterTextSplitter } from \"langchain/text_splitter\";\n import * as fs from \"fs\";\n \n \n-\n+// 目前只能读txt，联合loader加载会报错，后面研究\n const text = fs.readFileSync(\"src/files/诗词曲.txt\", \"utf8\");\n const textSplitter = new CharacterTextSplitter({\n   separator: '  ',\n   chunkSize: 10,\n"
+                }
+            ],
+            "date": 1683771066934,
+            "name": "Commit-0",
+            "content": "import chat from \"./components/chat.js\";\n\nimport { OpenAI } from \"langchain/llms/openai\";\nimport { RetrievalQAChain } from \"langchain/chains\";\nimport { HNSWLib } from \"langchain/vectorstores/hnswlib\";\nimport { OpenAIEmbeddings } from \"langchain/embeddings/openai\";\nimport { RecursiveCharacterTextSplitter } from \"langchain/text_splitter\";\nimport { CharacterTextSplitter } from \"langchain/text_splitter\";\nimport * as fs from \"fs\";\n\n// 从文档中创建一个矢量存储\nconst vectorStore = await HNSWLib.fromDocuments(await extract(), new OpenAIEmbeddings({ openAIApiKey: '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' }));\n\nconst chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());\nconsole.log('初始化完毕') \n\nconst knowledgeBaseChat =async(inputValue)=>{\nconsole.log('输入问题：',inputValue)\n   const res = await chain.call({\n     query: inputValue,\n   });\n \n   console.log('AI:',res) \n\n}\n\nexport default knowledgeBaseChat"
+        }
+    ]
+}

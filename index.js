@@ -4,6 +4,7 @@ import steamChat from './src/streamChat.js'
 import memoryChat from './src/memoryChat.js'
 import ordinaryChat from './src/ordinaryChat.js'
 import googleChat from './src/googleChat.js'
+import knowledgeBaseChat from './src/knowledgeChat.js'
 // import knowledgeBaseChat from './src/knowledgeChat.js'
 dotenv.config()
 
@@ -12,7 +13,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 rl.on('line', (input) => {
-    memoryChat(input)
+    knowledgeBaseChat(input)
 }
 );
 
