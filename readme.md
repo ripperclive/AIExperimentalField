@@ -97,7 +97,6 @@ vectorStore.similaritySearchWithScore
 
 
 
-
 ### 写到这里的时候代码丢了，手抖按了全部撤销
 回档之后发现一个问题 memoryChat.js中带向量库的chat宕机了，一问三不知。
 死活找不到问题。
