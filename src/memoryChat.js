@@ -14,6 +14,7 @@ import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { VectorStoreRetrieverMemory } from "langchain/memory";
 
 
+console.log('1')
 // new一个
 const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" })
 
@@ -70,7 +71,7 @@ const intelligenceMemoryChain = new LLMChain({ llm: chat, prompt, memory: intell
 
 // 也可以将对话数据存储在VectorDB中，VectorDB是一个高性能的向量检索库，基于类似HNSW的算法来进行快速的相似度搜索
 // HNSW相关的库后面也会用到，比如知识库
-const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
+const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings({ openAIApiKey: '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' }))
 // 
 const vectorStoreMemory = new VectorStoreRetrieverMemory({
     // 1是要回溯的文本/对话数量
@@ -125,8 +126,9 @@ const vectorChain = new LLMChain({ llm: chat, prompt:vectorPrompt, memory:vector
  * vectorChain: 使用向量库
  */
 async function memoryChat(inputValue) {
+    console.log('2')
 
-    const response = await vectorChain.call({ input: inputValue })
+    const response = await intelligenceMemoryChain.call({ input: inputValue })
 
     console.log(response)
     console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })

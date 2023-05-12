@@ -43,7 +43,7 @@ const docs = await textSplitter.createDocuments(text);
 
 
 
-// const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
+// const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
 
 
 

@@ -22,7 +22,7 @@ const docs = await textSplitter.createDocuments([text]);
 
 
 // 从文档中创建一个矢量存储
-const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
+const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({ openAIApiKey: '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' }));
 
 // 创建一个支持文档检索的链
 const chain = RetrievalQAChain.fromLLM(chat, vectorStore.asRetriever());
