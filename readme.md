@@ -34,6 +34,11 @@ maxTokens
 streaming
 开启流式传输，需要配合handleLLMNewToken一块使用，详情见streamChat.js
 
+maxConcurrency
+并发数量
+
+
+
 ###  部分chain的对比
 通过memoryChat这个例子，发现很多方法都是类似的
 比如：LLMChain和ConversationChain
@@ -110,3 +115,17 @@ vectorStoreMemory.saveContext(
 )
 ```
 凎
+
+
+### 给出特定数据的测试结果
+
+如果把GRE数学.txt这个文件直接传给AI会提示token过大，但是切片之后传送就没问题。抓包依旧抓不到,很难判断AI发送的请求是否是一股脑全带过去。
+AI能根据切片之后的上下文来回答问题，即使是瞎切的。
+
+splitDocuments 拆分文档   createDocuments 拆分字符串   MarkdownTextSplitter拆分md文档
+可以额外传入一个数组，作为每一个document的metaData值,但是这个tag的方法是写死的，不能像dify那样根据切片内容生成结果
+
+文段长度和精细度跟AI说一声就行了，不需要额外处理。
+
+
+

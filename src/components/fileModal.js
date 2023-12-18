@@ -58,7 +58,7 @@ docsModal = docsModal.map(item=>{
 });
 
 
-console.log(docsModal)
+// console.log(docsModal)
 
 const getModal = async()=>{
     return await docsModal

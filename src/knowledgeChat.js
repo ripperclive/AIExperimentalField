@@ -1,5 +1,6 @@
 import chat from "./components/chat.js";
 
+// import extract from "./components/knowledgeBase.js";
 import { OpenAI } from "langchain/llms/openai";
 import { RetrievalQAChain } from "langchain/chains";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
@@ -19,6 +20,7 @@ const textSplitter = new CharacterTextSplitter({
 
 
 const docs = await textSplitter.createDocuments([text]);
+
 
 
 // 从文档中创建一个矢量存储

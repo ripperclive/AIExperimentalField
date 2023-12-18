@@ -14,7 +14,6 @@ import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { VectorStoreRetrieverMemory } from "langchain/memory";
 
 
-console.log('1')
 // new一个
 const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" })
 
@@ -126,12 +125,10 @@ const vectorChain = new LLMChain({ llm: chat, prompt:vectorPrompt, memory:vector
  * vectorChain: 使用向量库
  */
 async function memoryChat(inputValue) {
-    console.log('2')
 
-    const response = await intelligenceMemoryChain.call({ input: inputValue })
-
+    const response = await memoryChain.call({ input: inputValue })
     console.log(response)
-    console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })
+    // console.log({ 'AI的内心OS': await intelligenceMemory.loadMemoryVariables({}) })
 
 }
 

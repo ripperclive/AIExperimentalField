@@ -100,7 +100,7 @@ import { initializeAgentExecutorWithOptions } from "langchain/agents";
 
 const questionAI4 = async (inputValue) => {
     // memoryChat(inputValue)
-    console.log(getModal())
+    // console.log(getModal())
 }
 
 
